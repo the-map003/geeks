@@ -1,0 +1,32 @@
+{
+  "name": "geeks-learning-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Academic full-stack reproduction of a GeeksforGeeks-style learning platform (Nuxt 4 + Express + Prisma + PostgreSQL)",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "executor"
+  ],
+  "scripts": {
+    "setup": "node scripts/setup-env.mjs",
+    "db:start": "node scripts/db.mjs start",
+    "db:reset": "node scripts/db.mjs reset",
+    "db:migrate": "npm run db:migrate -w backend",
+    "db:seed": "npm run db:seed -w backend",
+    "db:studio": "npm run db:studio -w backend",
+    "dev": "concurrently -k -n backend,executor,frontend -c blue,magenta,green \"npm run dev -w backend\" \"npm run dev -w executor\" \"npm run dev -w frontend\"",
+    "dev:all": "concurrently -k -n db,backend,executor,frontend -c yellow,blue,magenta,green \"npm run db:start\" \"npm run dev -w backend\" \"npm run dev -w executor\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w backend && npm run build -w executor && npm run build -w frontend",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.0",
+    "embedded-postgres": "17.10.0-beta.17"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

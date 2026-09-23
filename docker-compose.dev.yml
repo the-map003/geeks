@@ -1,0 +1,18 @@
+# Development database only (alternative to `npm run db:start` when Docker is available).
+#   docker compose -f docker-compose.dev.yml up -d
+# Then set DATABASE_URL=postgresql://postgres:postgres@localhost:5433/geeks?schema=public in backend/.env
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: geeks
+    ports:
+      - '5433:5432'
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_dev_data:

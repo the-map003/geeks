@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.output/
+.nuxt/
+.nitro/
+.cache/
+data/
+coverage/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+backend/prisma/generated/
+executor/tmp/
